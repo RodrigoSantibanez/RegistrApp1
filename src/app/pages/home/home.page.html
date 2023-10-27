@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title class="title-animation">RegistrApp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">RegistrApp</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+
+    <ion-card-content>
+      <ion-item lines="none">
+        <!-- {{interpolacion}} 
+          Permite mostrar los datos desde el script a la visual
+          verificar el data en el home.page.ts
+        -->
+        <ion-label >Bienvenido {{data.usuario}}!</ion-label>
+      </ion-item>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>
+
