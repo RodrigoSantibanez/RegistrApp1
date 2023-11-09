@@ -4,24 +4,20 @@
     <ion-title class="tittle">RegistrApp</ion-title>
     <p class="subTitle"> Ingresa tus datos para acceder</p>
   </div>
-  <form [formGroup]="form">
     <div class="ion-padding">
       <ion-item>
-        <ion-input placeholder="email" class="input" type="email" formControlName="email"></ion-input>
+        <ion-input placeholder="email" class="input" type="email" ></ion-input>
         <ion-icon name="person-outline"></ion-icon>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="Password" class="input" type="password" formControlName="password"></ion-input>
+        <ion-input placeholder="Password" class="input" type="password" ></ion-input>
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
     </div>
     <div class="forgotpassword">
-      <a [routerLink]="['/reset-password']">Forgot password?</a>
+      <a >Forgot password?</a>
     </div>
-  </form>
-  <ion-fab vertical="bottom" horizontal="center" style="margin-bottom:10%;">
-    <ion-fab-button [routerLink]="['/home']">
-      <ion-icon name="chevron-forward"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+    <div class="but">
+    <ion-button (click)="navigateToMenu()"><ion-icon name="chevron-forward"></ion-icon></ion-button>
+  </div>
 </ion-content>

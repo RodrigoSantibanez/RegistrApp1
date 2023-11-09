@@ -7,6 +7,7 @@ import { AuthService } from '../services/auth.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthGuard implements CanActivate {
   constructor(private getnames: AuthService, private router: Router) {}
   canActivate(): boolean {
@@ -18,5 +19,4 @@ export class AuthGuard implements CanActivate {
       return false;
     }
   }
-  
 }
