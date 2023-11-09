@@ -3,15 +3,14 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class authService {
+  private username: string | null = null;
 
-  constructor() { }
-  capturarUsuario(usuario: string): void {
-    localStorage.setItem('username', usuario);
+  setUsername(username: string) {
+    this.username = username;
   }
 
-  obtenerUsuario(): string | null {
-    return localStorage.getItem('username');
+  getUsername(): string | null {
+    return this.username;
   }
 }
-

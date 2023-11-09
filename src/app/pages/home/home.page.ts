@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { authService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,18 +7,13 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  data: any;
+  usuario: string | null = null;
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
-    // this.activatedRoute.queryParams.subscribe(params => {
-    //   const navigationState = this.router.getCurrentNavigation()?.extras?.state;
-      
-    //   if (navigationState && 'user' in navigationState) {
-    //     this.data = navigationState['user'];
-    //     console.log(this.data);
-    //   } else {
-    //     this.router.navigate(['/login']);
-    //   }
-    // });
-  }
+  constructor(
+    private authService : authService
+    ) {}
+
+    ngOnInit(){
+      this.usuario = this.authService.getUsername();
+    }
 }

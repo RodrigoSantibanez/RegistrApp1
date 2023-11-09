@@ -1,22 +1,41 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
-
+import { PassedLog } from '../services/PassedLog/passed-log.service';
+import { AlertController} from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthGuard implements CanActivate {
-  constructor(private getnames: AuthService, private router: Router) {}
-  canActivate(): boolean {
-    const usuarioCapturado = this.getnames.obtenerUsuario();
-    if (usuarioCapturado) {
-      return true; // Usuario capturado, permitir acceso
+  constructor(
+    private router: Router, 
+    private serviceGuard: PassedLog,
+    private alertController : AlertController) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+      
+
+
+    if (this.serviceGuard.PassedLogin()) {
+      return true;
     } else {
-      this.router.navigate(['/unauthorized']); // Usuario no capturado, redirigir a la página de error
-      return false;
+      console.log('no has pasado por un log')
+      this.showAlert('Error', 'Debes pasar por el login para ingresar')
+      return this.router.parseUrl('/login');
     }
+  }
+
+  async showAlert(title: string, message: string) {
+    const alert = await this.alertController.create({
+      header: title,
+      message: message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }
